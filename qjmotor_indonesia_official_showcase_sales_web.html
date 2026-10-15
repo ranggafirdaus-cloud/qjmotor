@@ -1,0 +1,839 @@
+<!DOCTYPE html>
+<html lang="id" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>QJMotor Indonesia - Pure Passion, Unmatched Power</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- FontAwesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Google Fonts Inter & Orbitron -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Orbitron:wght@600;800;900&display=swap" rel="stylesheet">
+
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        brand: {
+                            red: '#E60012',
+                            darkred: '#99000B',
+                            dark: '#0D0D0D',
+                            card: '#18181B',
+                            muted: '#27272A',
+                            accent: '#FF2E4D'
+                        }
+                    },
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                        display: ['Orbitron', 'sans-serif']
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        body {
+            background-color: #0D0D0D;
+            color: #F4F4F5;
+            font-family: 'Inter', sans-serif;
+            overflow-x: hidden;
+        }
+        .font-display {
+            font-family: 'Orbitron', sans-serif;
+        }
+        .glass-panel {
+            background: rgba(24, 24, 27, 0.75);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+        }
+        .red-glow {
+            box-shadow: 0 0 25px rgba(230, 0, 18, 0.35);
+        }
+        .red-glow-hover:hover {
+            box-shadow: 0 0 30px rgba(230, 0, 18, 0.5);
+        }
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #0D0D0D;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #27272A;
+            border-radius: 4px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #E60012;
+        }
+    </style>
+</head>
+<body class="antialiased text-gray-100 flex flex-col min-h-screen selection:bg-brand-red selection:text-white">
+
+    <!-- Navigation Header -->
+    <header class="fixed top-0 left-0 right-0 z-50 glass-panel border-b border-white/10 transition-all duration-300" id="navbar">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between">
+            <a href="#" class="flex items-center gap-3 group">
+                <div class="w-10 h-10 bg-brand-red rounded-lg flex items-center justify-center font-display font-black text-xl text-white transform -skew-x-12 group-hover:scale-105 transition-transform">
+                    QJ
+                </div>
+                <div class="flex flex-col">
+                    <span class="font-display font-black text-2xl tracking-wider text-white flex items-center gap-1">
+                        QJMOTOR <span class="text-xs px-1.5 py-0.5 bg-brand-red/20 text-brand-red border border-brand-red/30 rounded font-sans font-semibold uppercase">ID</span>
+                    </span>
+                    <span class="text-[10px] tracking-widest text-gray-400 font-mono">OFFICIAL DEALER INDONESIA</span>
+                </div>
+            </a>
+
+            <nav class="hidden md:flex items-center gap-8">
+                <a href="#home" class="text-sm font-medium hover:text-brand-red transition-colors flex items-center gap-1"><i class="fa-solid fa-house text-xs opacity-70"></i> Beranda</a>
+                <a href="#models" class="text-sm font-medium hover:text-brand-red transition-colors flex items-center gap-1"><i class="fa-solid fa-motorcycle text-xs opacity-70"></i> Katalog Motor</a>
+                <a href="#credit" class="text-sm font-medium hover:text-brand-red transition-colors flex items-center gap-1"><i class="fa-solid fa-calculator text-xs opacity-70"></i> Simulasi Kredit</a>
+                <a href="#features" class="text-sm font-medium hover:text-brand-red transition-colors flex items-center gap-1"><i class="fa-solid fa-shield-halved text-xs opacity-70"></i> Keunggulan</a>
+                <a href="#dealers" class="text-sm font-medium hover:text-brand-red transition-colors flex items-center gap-1"><i class="fa-solid fa-location-dot text-xs opacity-70"></i> Dealer & Kontak</a>
+            </nav>
+
+            <div class="hidden lg:flex items-center gap-4">
+                <button onclick="openTestDriveModal()" class="px-5 py-2.5 bg-brand-red hover:bg-brand-darkred text-white text-sm font-semibold rounded-lg red-glow transition-all duration-300 flex items-center gap-2 transform active:scale-95">
+                    <i class="fa-solid fa-calendar-check"></i> Jadwal Test Drive
+                </button>
+            </div>
+
+            <button id="mobile-menu-btn" class="md:hidden text-gray-300 hover:text-white p-2 rounded-lg focus:outline-none">
+                <i class="fa-solid fa-bars text-2xl"></i>
+            </button>
+        </div>
+
+        <div id="mobile-menu" class="hidden md:hidden glass-panel border-b border-white/10 px-4 pt-2 pb-6 space-y-3">
+            <a href="#home" class="mobile-link block px-3 py-2 rounded-md text-base font-medium hover:bg-white/5 hover:text-brand-red">Beranda</a>
+            <a href="#models" class="mobile-link block px-3 py-2 rounded-md text-base font-medium hover:bg-white/5 hover:text-brand-red">Katalog Motor</a>
+            <a href="#credit" class="mobile-link block px-3 py-2 rounded-md text-base font-medium hover:bg-white/5 hover:text-brand-red">Simulasi Kredit</a>
+            <a href="#features" class="mobile-link block px-3 py-2 rounded-md text-base font-medium hover:bg-white/5 hover:text-brand-red">Keunggulan QJMotor</a>
+            <a href="#dealers" class="mobile-link block px-3 py-2 rounded-md text-base font-medium hover:bg-white/5 hover:text-brand-red">Dealer & Kontak</a>
+            <div class="pt-2">
+                <button onclick="openTestDriveModal()" class="w-full py-3 bg-brand-red text-white font-semibold rounded-lg text-center flex items-center justify-center gap-2">
+                    <i class="fa-solid fa-calendar-check"></i> Jadwal Test Drive
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <!-- Hero Section Carousel -->
+    <section id="home" class="relative pt-24 min-h-screen flex items-center justify-center overflow-hidden">
+        <div class="absolute inset-0 bg-gradient-to-r from-black via-black/80 to-transparent z-10"></div>
+        <div class="absolute -top-32 -right-32 w-96 h-96 bg-brand-red/20 rounded-full blur-3xl pointer-events-none"></div>
+
+        <div class="relative z-20 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 w-full">
+            <div class="grid lg:grid-cols-12 gap-8 items-center">
+                <div class="lg:col-span-7 space-y-6 text-left">
+                    <div class="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-brand-red/10 border border-brand-red/30 text-brand-red text-xs font-semibold uppercase tracking-widest">
+                        <i class="fa-solid fa-bolt"></i> Official Launch Indonesia
+                    </div>
+                    
+                    <h1 id="hero-title" class="font-display font-extrabold text-4xl sm:text-6xl xl:text-7xl tracking-tight leading-none text-white">
+                        SRV 250 Libero  <br><span class="text-transparent bg-clip-text bg-gradient-to-r from-brand-red to-red-400">BIG CRUISER</span>
+                    </h1>
+                    
+                    <p id="hero-desc" class="text-gray-300 text-base sm:text-lg max-w-xl font-light">
+                        Sensasi Cruiser sejati dengan mesin 2-Silinder 250cc, performa agresif, 2 transmisi , dan suara raungan mesin dua cylinder yang tak tertandingi di kelasnya.
+                    </p>
+
+                    <div class="flex flex-wrap items-center gap-4 pt-4">
+                        <a href="#models" class="px-8 py-3.5 bg-brand-red hover:bg-brand-darkred text-white font-semibold rounded-lg red-glow transition-all duration-300 flex items-center gap-3">
+                            <i class="fa-solid fa-motorcycle"></i> Lihat Katalog
+                        </a>
+                        <button onclick="openTestDriveModal()" class="px-8 py-3.5 glass-panel hover:bg-white/10 text-white font-semibold rounded-lg border border-white/20 transition-all duration-300 flex items-center gap-2">
+                            <i class="fa-solid fa-road"></i> Test Drive Sekarang
+                        </button>
+                    </div>
+
+                    <div class="grid grid-cols-3 gap-4 pt-6 border-t border-white/10 max-w-lg">
+                        <div>
+                            <p class="text-xs text-gray-400 uppercase font-mono">Kapasitas</p>
+                            <p id="hero-spec-cc" class="font-display text-xl sm:text-2xl font-bold text-white">250 cc</p>
+                        </div>
+                        <div>
+                            <p class="text-xs text-gray-400 uppercase font-mono"> Tenaga </p>
+                            <p id="hero-spec-power" class="font-display text-xl sm:text-2xl font-bold text-brand-red"> 27 HP </p>
+                        </div>
+                        <div>
+                            <p class="text-xs text-gray-400 uppercase font-mono">Harga Mulai</p>
+                            <p id="hero-spec-price" class="font-display text-lg sm:text-xl font-bold text-white">Rp 73.990.000</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="lg:col-span-5 relative flex justify-center items-center">
+                    <div class="absolute w-72 h-72 sm:w-96 sm:h-96 bg-brand-red/10 rounded-full blur-2xl"></div>
+                    <!-- TIP: Ubah link src di bawah dengan foto motor milik Anda sendiri -->
+                    <img id="hero-image" src="images/srvlibero250.jpg" alt="QJMotor Flagship" class="relative z-10 w-full max-w-lg h-auto object-contain rounded-2xl shadow-2xl transition-all duration-500 hover:scale-105 filter drop-shadow-[0_20px_30px_rgba(230,0,18,0.3)]">
+                </div>
+            </div>
+
+            <div class="flex justify-center items-center gap-3 mt-12">
+                <button onclick="setHeroSlide(0)" class="hero-dot w-10 h-2.5 rounded-full bg-brand-red transition-all" data-slide="0"></button>
+                <button onclick="setHeroSlide(1)" class="hero-dot w-3 h-2.5 rounded-full bg-gray-600 hover:bg-gray-400 transition-all" data-slide="1"></button>
+                <button onclick="setHeroSlide(2)" class="hero-dot w-3 h-2.5 rounded-full bg-gray-600 hover:bg-gray-400 transition-all" data-slide="2"></button>
+                <button onclick="setHeroSlide(3)" class="hero-dot w-3 h-2.5 rounded-full bg-gray-600 hover:bg-gray-400 transition-all" data-slide="3"></button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Product Catalog Showcase -->
+    <section id="models" class="py-20 bg-black/50 relative border-t border-white/5">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center max-w-3xl mx-auto space-y-3 mb-12">
+                <span class="text-brand-red font-semibold text-sm uppercase tracking-widest font-mono">Jajaran Line-up Unggulan</span>
+                <h2 class="font-display text-3xl sm:text-5xl font-extrabold text-white">KATALOG QJMOTOR</h2>
+                <p class="text-gray-400 text-sm sm:text-base">Pilih kategori motor impian Anda. Dari kejayaan lintasan balap, petualangan touring, hingga kenyamanan komuter perkotaan.</p>
+            </div>
+
+            <div class="flex flex-wrap justify-center gap-2 sm:gap-4 mb-12">
+                <button onclick="filterCategory('all')" class="cat-btn active border border-brand-red bg-brand-red text-white px-5 py-2.5 rounded-full text-sm font-semibold transition-all">Semua Model</button>
+                <button onclick="filterCategory('sport')" class="cat-btn border border-white/10 bg-brand-card hover:border-brand-red/50 text-gray-300 px-5 py-2.5 rounded-full text-sm font-semibold transition-all">Sport Series (SRK)</button>
+                <button onclick="filterCategory('adventure')" class="cat-btn border border-white/10 bg-brand-card hover:border-brand-red/50 text-gray-300 px-5 py-2.5 rounded-full text-sm font-semibold transition-all">Adventure (SRT)</button>
+                <button onclick="filterCategory('scooter')" class="cat-btn border border-white/10 bg-brand-card hover:border-brand-red/50 text-gray-300 px-5 py-2.5 rounded-full text-sm font-semibold transition-all">Scooter / Urban (FORT/ATR)</button>
+                <button onclick="filterCategory('cruiser')" class="cat-btn border border-white/10 bg-brand-card hover:border-brand-red/50 text-gray-300 px-5 py-2.5 rounded-full text-sm font-semibold transition-all">Cruiser (SRV)</button>
+            </div>
+
+            <div id="product-grid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <!-- Dinamis dari JavaScript -->
+            </div>
+        </div>
+    </section>
+
+    <!-- Financing / Credit Simulator -->
+    <section id="credit" class="py-20 relative bg-brand-card/30 border-t border-b border-white/5">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid lg:grid-cols-12 gap-12 items-center">
+                <div class="lg:col-span-5 space-y-6">
+                    <span class="text-brand-red font-mono font-semibold text-sm uppercase tracking-widest">Kalkulator Pembiayaan</span>
+                    <h2 class="font-display text-3xl sm:text-4xl font-extrabold text-white">SIMULASI KREDIT MUDAH & TRANSPARAN</h2>
+                    <p class="text-gray-400 text-sm leading-relaxed">
+                        Hitung estimasi angsuran bulanan motor QJMotor impian Anda secara mudah. Kami siap membantu proses pengajuan dengan DP terjangkau.
+                    </p>
+                    <div class="space-y-4 pt-2">
+                        <div class="flex items-center gap-3">
+                            <div class="w-10 h-10 rounded-lg bg-brand-red/10 text-brand-red flex items-center justify-center font-bold">
+                                <i class="fa-solid fa-percent"></i>
+                            </div>
+                            <div>
+                                <h4 class="font-semibold text-white text-sm">Bunga Kompetitif</h4>
+                                <p class="text-xs text-gray-400">Suku bunga rendah mulai dari 0.8% per bulan</p>
+                            </div>
+                        </div>
+                        <div class="flex items-center gap-3">
+                            <div class="w-10 h-10 rounded-lg bg-brand-red/10 text-brand-red flex items-center justify-center font-bold">
+                                <i class="fa-solid fa-bolt-lightning"></i>
+                            </div>
+                            <div>
+                                <h4 class="font-semibold text-white text-sm">Proses Cepat & Praktis</h4>
+                                <p class="text-xs text-gray-400">Persetujuan dokumen mudah langsung via WhatsApp</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="lg:col-span-7 glass-panel p-6 sm:p-8 rounded-2xl border border-white/10 red-glow">
+                    <h3 class="font-display text-xl font-bold text-white mb-6 flex items-center gap-2">
+                        <i class="fa-solid fa-calculator text-brand-red"></i> Hitung Angsuran Bulanan
+                    </h3>
+
+                    <div class="space-y-6">
+                        <div>
+                            <label class="block text-xs font-semibold text-gray-300 uppercase mb-2">Pilih Model QJMotor</label>
+                            <select id="sim-motor" onchange="calculateCredit()" class="w-full bg-brand-dark border border-white/20 rounded-lg p-3 text-white focus:outline-none focus:border-brand-red">
+                            </select>
+                        </div>
+
+                        <div class="flex justify-between items-center p-3 bg-white/5 rounded-lg">
+                            <span class="text-xs text-gray-400">Harga OTR (Estimasi):</span>
+                            <span id="sim-price-display" class="font-display font-bold text-brand-red text-lg">Rp 0</span>
+                        </div>
+
+                        <div>
+                            <div class="flex justify-between text-xs font-semibold text-gray-300 mb-2">
+                                <span>Uang Muka (DP): <span id="dp-percent-label" class="text-brand-red">20%</span></span>
+                                <span id="dp-amount-label" class="text-white font-mono">Rp 0</span>
+                            </div>
+                            <input type="range" id="sim-dp-range" min="15" max="50" step="5" value="20" oninput="calculateCredit()" class="w-full h-2 bg-gray-700 rounded-lg appearance-none cursor-pointer accent-brand-red">
+                        </div>
+
+                        <div>
+                            <label class="block text-xs font-semibold text-gray-300 uppercase mb-2">Jangka Waktu (Tenor)</label>
+                            <div class="grid grid-cols-4 gap-3">
+                                <button onclick="setTenor(12)" class="tenor-btn py-2.5 rounded-lg border border-white/20 bg-brand-dark font-mono text-sm font-bold text-gray-300 hover:border-brand-red transition-all active" data-tenor="12">12 Bln</button>
+                                <button onclick="setTenor(24)" class="tenor-btn py-2.5 rounded-lg border border-white/20 bg-brand-dark font-mono text-sm font-bold text-gray-300 hover:border-brand-red transition-all" data-tenor="24">24 Bln</button>
+                                <button onclick="setTenor(36)" class="tenor-btn py-2.5 rounded-lg border border-white/20 bg-brand-dark font-mono text-sm font-bold text-gray-300 hover:border-brand-red transition-all" data-tenor="36">36 Bln</button>
+                                <button onclick="setTenor(48)" class="tenor-btn py-2.5 rounded-lg border border-white/20 bg-brand-dark font-mono text-sm font-bold text-gray-300 hover:border-brand-red transition-all" data-tenor="48">48 Bln</button>
+                            </div>
+                        </div>
+
+                        <div class="p-5 bg-gradient-to-br from-brand-red/20 to-black rounded-xl border border-brand-red/40 text-center space-y-1">
+                            <span class="text-xs text-gray-300 uppercase tracking-widest">Estimasi Angsuran Per Bulan</span>
+                            <div id="sim-monthly-installment" class="font-display text-3xl sm:text-4xl font-extrabold text-white">Rp 0</div>
+                            <p class="text-[10px] text-gray-400">*Simulasi ini bersifat estimasi.</p>
+                        </div>
+
+                        <button onclick="applyCreditWithSelectedMotor()" class="w-full py-3.5 bg-brand-red hover:bg-brand-darkred text-white font-bold rounded-lg transition-all red-glow flex items-center justify-center gap-2">
+                            <i class="fa-brands fa-whatsapp text-lg"></i> Ajukan Kredit via WhatsApp
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Brand Value Features Section -->
+    <section id="features" class="py-20 relative">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center max-w-3xl mx-auto space-y-3 mb-16">
+                <span class="text-brand-red font-mono font-semibold text-sm uppercase tracking-widest">Mengapa Memilih QJMotor?</span>
+                <h2 class="font-display text-3xl sm:text-5xl font-extrabold text-white">INOVASI, DESAIN & PERFORMA</h2>
+                <p class="text-gray-400 text-sm sm:text-base">QJMotor menghadirkan standar baru dalam dunia roda dua Indonesia dengan teknologi modern dan komponen berkualitas tinggi.</p>
+            </div>
+
+            <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
+                <div class="glass-panel p-6 rounded-2xl hover:border-brand-red/50 transition-all duration-300 space-y-4 group">
+                    <div class="w-14 h-14 bg-brand-red/10 group-hover:bg-brand-red text-brand-red group-hover:text-white rounded-xl flex items-center justify-center text-2xl transition-all duration-300">
+                        <i class="fa-solid fa-compass-drafting"></i>
+                    </div>
+                    <h3 class="font-display font-bold text-lg text-white">Desain Italia Premium</h3>
+                    <p class="text-gray-400 text-sm leading-relaxed">Dirancang dengan bahasa desain agresif, futuristik, dan ergonomi berkendara tingkat tinggi.</p>
+                </div>
+
+                <div class="glass-panel p-6 rounded-2xl hover:border-brand-red/50 transition-all duration-300 space-y-4 group">
+                    <div class="w-14 h-14 bg-brand-red/10 group-hover:bg-brand-red text-brand-red group-hover:text-white rounded-xl flex items-center justify-center text-2xl transition-all duration-300">
+                        <i class="fa-solid fa-microchip"></i>
+                    </div>
+                    <h3 class="font-display font-bold text-lg text-white">Teknologi Canggih</h3>
+                    <p class="text-gray-400 text-sm leading-relaxed">Dilengkapi panel layar TFT berwarna, sistem kunci Smart Keyless, serta rem ABS dual-channel.</p>
+                </div>
+
+                <div class="glass-panel p-6 rounded-2xl hover:border-brand-red/50 transition-all duration-300 space-y-4 group">
+                    <div class="w-14 h-14 bg-brand-red/10 group-hover:bg-brand-red text-brand-red group-hover:text-white rounded-xl flex items-center justify-center text-2xl transition-all duration-300">
+                        <i class="fa-solid fa-shield-check"></i>
+                    </div>
+                    <h3 class="font-display font-bold text-lg text-white">Garansi Resmi</h3>
+                    <p class="text-gray-400 text-sm leading-relaxed">Jaminan perlindungan garansi pabrik resmi untuk kenyamanan dan ketenangan pikiran Anda.</p>
+                </div>
+
+                <div class="glass-panel p-6 rounded-2xl hover:border-brand-red/50 transition-all duration-300 space-y-4 group">
+                    <div class="w-14 h-14 bg-brand-red/10 group-hover:bg-brand-red text-brand-red group-hover:text-white rounded-xl flex items-center justify-center text-2xl transition-all duration-300">
+                        <i class="fa-solid fa-screws-tilting"></i>
+                    </div>
+                    <h3 class="font-display font-bold text-lg text-white">Suku Cadang Melimpah</h3>
+                    <p class="text-gray-400 text-sm leading-relaxed">Dukungan bengkel resmi yang siap melayani perawatan rutin kendaraan Anda.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Dealer Locator & Contact Section -->
+    <section id="dealers" class="py-20 bg-black/60 border-t border-white/5 relative">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid lg:grid-cols-12 gap-12">
+                <div class="lg:col-span-6 space-y-6">
+                    <span class="text-brand-red font-mono font-semibold text-sm uppercase tracking-widest">Jaringan Showroom</span>
+                    <h2 class="font-display text-3xl sm:text-4xl font-extrabold text-white">HUBUNGI KAMI VIA WHATSAPP</h2>
+                    <p class="text-gray-400 text-sm">Pesan unit motor atau tanyakan promo terbaru langsung melalui WhatsApp resmi kami .</p>
+
+                    <div class="glass-panel p-6 rounded-xl border border-white/10 space-y-4">
+                        <div class="flex items-center gap-4">
+                            <div class="w-12 h-12 bg-green-500/20 text-green-400 rounded-full flex items-center justify-center text-2xl">
+                                <i class="fa-brands fa-whatsapp"></i>
+                            </div>
+                            <div>
+                                <h4 class="font-bold text-white text-base">WhatsApp Official Sales</h4>
+                                <p class="text-xs text-brand-red font-mono font-bold">RANGGA</p>
+                            </div>
+                        </div>
+                        <a href="https://wa.me/6285711238005?text=Halo%20QJMotor,%20saya%20tertarik%20ingin%20mengetahui%20katalog%20dan%20harga%20terbaru." target="_blank" class="w-full py-3 bg-brand-red hover:bg-brand-darkred text-white text-sm font-bold rounded-lg transition-all flex items-center justify-center gap-2 red-glow">
+                            <i class="fa-brands fa-whatsapp text-lg"></i> Chat Langsung ke WhatsApp
+                        </a>
+                    </div>
+                </div>
+
+                <div class="lg:col-span-6 glass-panel p-8 rounded-2xl border border-white/10">
+                    <h3 class="font-display text-2xl font-bold text-white mb-2">FORMULIR PERTANYAAN</h3>
+                    <p class="text-xs text-gray-400 mb-6">Punya pertanyaan mengenai unit, harga, atau ketersediaan warna? Isi formulir ini untuk terhubung cepat.</p>
+
+                    <form id="contact-form" onsubmit="handleContactSubmit(event)" class="space-y-4">
+                        <div>
+                            <label class="block text-xs font-medium text-gray-300 mb-1">Nama Lengkap</label>
+                            <input type="text" id="cust-name" required placeholder="Contoh: Budi Santoso" class="w-full bg-brand-dark border border-white/15 rounded-lg px-4 py-2.5 text-sm text-white focus:outline-none focus:border-brand-red">
+                        </div>
+                        <div>
+                            <label class="block text-xs font-medium text-gray-300 mb-1">Model Yang Diminati</label>
+                            <select id="contact-motor-select" class="w-full bg-brand-dark border border-white/15 rounded-lg px-4 py-2.5 text-sm text-white focus:outline-none focus:border-brand-red">
+                            </select>
+                        </div>
+                        <div>
+                            <label class="block text-xs font-medium text-gray-300 mb-1">Pesan / Pertanyaan</label>
+                            <textarea id="cust-msg" rows="3" placeholder="Tanyakan info penawaran spesial..." class="w-full bg-brand-dark border border-white/15 rounded-lg px-4 py-2.5 text-sm text-white focus:outline-none focus:border-brand-red"></textarea>
+                        </div>
+                        <button type="submit" class="w-full py-3 bg-brand-red hover:bg-brand-darkred text-white font-bold rounded-lg transition-all red-glow flex items-center justify-center gap-2">
+                            <i class="fa-brands fa-whatsapp"></i> Kirim Pesan via WhatsApp
+                        </button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer Section -->
+    <footer class="bg-brand-dark border-t border-white/10 pt-16 pb-8 text-gray-400">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="border-t border-white/10 pt-6 flex flex-col sm:flex-row justify-between items-center text-xs text-gray-500 gap-4">
+                <p>&copy; 2026 QJMotor Indonesia. All Rights Reserved. Contact: 085711238005</p>
+                <div class="flex gap-4">
+                    <a href="#" class="hover:underline">Syarat & Ketentuan</a>
+                    <a href="#" class="hover:underline">Kebijakan Privasi</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Modal Test Drive -->
+    <div id="test-drive-modal" class="fixed inset-0 z-50 hidden flex items-center justify-center p-4 bg-black/80 backdrop-blur-md">
+        <div class="glass-panel w-full max-w-lg rounded-2xl border border-white/20 p-6 sm:p-8 relative max-h-[90vh] overflow-y-auto">
+            <button onclick="closeTestDriveModal()" class="absolute top-4 right-4 text-gray-400 hover:text-white text-xl">
+                <i class="fa-solid fa-xmark"></i>
+            </button>
+
+            <div class="text-center mb-6">
+                <h3 class="font-display font-bold text-2xl text-white">BOOKING TEST DRIVE</h3>
+                <p class="text-xs text-gray-400">Konfirmasi jadwal langsung terhubung ke WhatsApp.</p>
+            </div>
+
+            <form onsubmit="handleTestDriveSubmit(event)" class="space-y-4">
+                <div>
+                    <label class="block text-xs font-semibold text-gray-300 mb-1">Pilih Model Motor</label>
+                    <select id="modal-motor-select" required class="w-full bg-brand-dark border border-white/20 rounded-lg p-2.5 text-sm text-white focus:outline-none focus:border-brand-red">
+                    </select>
+                </div>
+                <div>
+                    <label class="block text-xs font-semibold text-gray-300 mb-1">Nama Lengkap</label>
+                    <input type="text" id="td-name" required placeholder="Nama Anda" class="w-full bg-brand-dark border border-white/20 rounded-lg p-2.5 text-sm text-white focus:outline-none focus:border-brand-red">
+                </div>
+                <div>
+                    <label class="block text-xs font-semibold text-gray-300 mb-1">Tanggal Rencana</label>
+                    <input type="date" id="td-date" required class="w-full bg-brand-dark border border-white/20 rounded-lg p-2.5 text-sm text-white focus:outline-none focus:border-brand-red">
+                </div>
+                <button type="submit" class="w-full py-3 bg-brand-red hover:bg-brand-darkred text-white font-bold rounded-lg transition-all red-glow mt-2 flex items-center justify-center gap-2">
+                    <i class="fa-brands fa-whatsapp"></i> Konfirmasi via WhatsApp
+                </button>
+            </form>
+        </div>
+    </div>
+
+    <!-- Modal Specification -->
+    <div id="spec-modal" class="fixed inset-0 z-50 hidden flex items-center justify-center p-4 bg-black/80 backdrop-blur-md">
+        <div class="glass-panel w-full max-w-2xl rounded-2xl border border-white/20 p-6 sm:p-8 relative max-h-[90vh] overflow-y-auto">
+            <button onclick="closeSpecModal()" class="absolute top-4 right-4 text-gray-400 hover:text-white text-xl">
+                <i class="fa-solid fa-xmark"></i>
+            </button>
+            <div id="spec-modal-content"></div>
+        </div>
+    </div>
+
+    <script>
+        // DATA SEPEDA MOTOR (Ganti URL gambar dengan foto milik Anda sendiri di sini)
+        const motorcycles = [
+            {
+                id: 'srk800rr',
+                name: 'SRK 800 RR',
+                category: 'sport',
+                price: 268000000,
+                priceFormatted: '268.000.000',
+                engine: '778 cc Inline-4 Cylinder',
+                power: '70.0 kW @ 10,000 RPM',
+                torque: '75.0 Nm @ 8,500 RPM',
+                typeBadge: 'Inline-4 Superbike',
+                image: 'images/srk800.jpg',
+                desc: 'Motor naked sport bongsor dengan raungan khas mesin 4 silinder inline.'
+            },
+            {
+                id: 'srk250ra',
+                name: 'SRK 250 RA',
+                category: 'sport',
+                price: 74990000,
+                priceFormatted: '74.990.000',
+                engine: '249 cc Parallel-Twin',
+                power: '26.4 kW HP @ 12,750 RPM',
+                torque: '23.0 Nm @ 9,750 RPM',
+                typeBadge: 'Superbike AMT',
+                image: 'images/srk250.jpg',
+                desc: 'Motor sport Transmisi Manual dan Matic'
+            },
+            {
+                id: 'cito',
+                name: 'CITO 150',
+                category: 'sport',
+                price: 33990000,
+                priceFormatted: '33.990.000',
+                engine: '149,3 cc',
+                power: '9.0 kW @ 8,000 RPM',
+                torque: '9,0 kW @ 8,000 RPM',
+                typeBadge: 'Sport Elegan',
+                image: 'images/cito.jpg',
+                desc: 'Motor elegan dengan ukuran yang cocok.'
+            },
+            {
+                id: 'tourino250dx',
+                name: 'Tourino 250 DX',
+                category: 'adventure',
+                price: 51990000,
+                priceFormatted: '51,990.000',
+                engine: '249 cc',
+                power: '19.0 kW @ 8,500 RPM',
+                typeBadge: 'Adventure Touring',
+                image: 'images/tourino250.jpg',
+                desc: 'Motor adventure touring dengan desain minimalis.'
+            },
+            {
+                id: 'tourino700sx',
+                name: 'Tourino 700 SX',
+                category: 'adventure',
+                price: 219000000,
+                priceFormatted: '219.000.000',
+                engine: '698.3 cc Parallel-Twin',
+                power: '51.5 kW @ 8,000 RPM',
+                torque: '70.0 Nm @ 6,000 RPM',
+                typeBadge: 'Big Adventure Touring',
+                image: 'images/tourino700.jpg',
+                desc: 'Motor adventure Touring tangguh menaklukkan berbagai medan.'
+            },
+            {
+                id: 'fortadv250abs',
+                name: 'Fort ADV 250 ABS',
+                category: 'adventure',
+                price: 54990000,
+                priceFormatted: '54.990.000',
+                engine: '249,4 cc ',
+                power: '17.0 kW @ 8,000 RPM',
+                torque: '24.5 Nm @ 8,000 RPM',
+                typeBadge: 'Scooter Adventure Elite',
+                image: 'images/fort250adva.jpeg',
+                desc: 'Motor adventure kasta tertinggi siap menaklukkan berbagai medan.'
+            },
+            {
+                id: 'fortadv250cbs',
+                name: 'Fort ADV 250 CBS',
+                category: 'adventure',
+                price: 47990000,
+                priceFormatted: '47.990.000',
+                engine: '249,4 cc ',
+                power: '17.0 kW S @ 8,000 RPM',
+                torque: '24.5 Nm @ 8,000 RPM',
+                typeBadge: 'Scooter Adventure',
+                image: 'images/fort250advb.jpg',
+                desc: 'Motor adventure kasta tertinggi siap menaklukkan berbagai medan.'
+            },
+            {
+                id: 'fortadvrpro',
+                name: 'Fort ADV R-Pro',
+                category: 'adventure',
+                price: 57990000,
+                priceFormatted: '57.990.000',
+                engine: '249,4 cc',
+                power: '17.0 kW @ 8,000 RPM',
+                torque: '24.5 Nm @ 8,000 RPM',
+                typeBadge: 'Modern Scooter Adventure',
+                image: 'images/advrpro.jpeg',
+                desc: 'Motor adventure modern dengan berbagai fitur canggih.'
+            },
+            {
+                id: 'fortadv180abs',
+                name: 'Fort ADV 180 ABS',
+                category: 'adventure',
+                price: 36990000,
+                priceFormatted: '36.990.000',
+                engine: '175 cc',
+                power: '13.0 kW @ 8,500 RPM',
+                torque: '15.2 Nm @ 6,500 RPM',
+                typeBadge: 'Best Scooter Adventure',
+                image: 'images/fort180a.jpeg',
+                desc: 'Motor adventure kasta tertinggi siap menaklukkan berbagai medan.'
+            },
+            {
+                id: 'fortadv180cbs',
+                name: 'Fort ADV 180 CBS',
+                category: 'adventure',
+                price: 33990000,
+                priceFormatted: '33.990.000',
+                engine: '175 cc',
+                power: '13.0 HP @ 8,500 RPM',
+                torque: '15.2 Nm @ 6,500 RPM',
+                typeBadge: 'Ultimate Adventure',
+                image: 'images/fort180b.jpeg',
+                desc: 'Motor adventure kasta tertinggi siap menaklukkan berbagai medan.'
+            },
+            {
+                id: 'fort250',
+                name: 'Fort 250',
+                category: 'scooter',
+                price: 54990000,
+                priceFormatted: '54.990.000',
+                engine: '249 cc Single Cylinder SOHC',
+                power: '34 HP @ 7,500 RPM',
+                torque: '35.2 Nm @ 6,000 RPM',
+                typeBadge: 'Maxi Urban Scooter',
+                image: 'images/fort250.jpg',
+                desc: 'Skutik bertubuh bongsor nan mewah dilengkapi fitur modern double suspensi.'
+            },
+            {
+                id: 'srv250amt',
+                name: 'SRV 250 AMT',
+                category: 'cruiser',
+                price: 62990000,
+                priceFormatted: '62.990.000',
+                engine: '296 cc V-Twin Engine',
+                power: '30.7 HP @ 9,000 RPM',
+                torque: '26 Nm @ 5,000 RPM',
+                typeBadge: 'Automatic Cruiser',
+                image: 'images/srv250amt.jpg',
+                desc: 'Cruiser canggih bisa manual dan matic.'
+            },
+            {
+                id: 'srv200',
+                name: 'SRV 200',
+                category: 'cruiser',
+                price: 32990000,
+                priceFormatted: '32.990.000',
+                engine: '296 cc V-Twin Engine',
+                power: '30.7 HP @ 9,000 RPM',
+                torque: '26 Nm @ 5,000 RPM',
+                typeBadge: 'Retro Modern Cruiser',
+                image: 'images/srv200.jpg',
+                desc: 'Cruiser Retro dengan fitur modern dan pilihan 3 Warna.'
+            },
+            {
+                id: 'srv250libero',
+                name: 'SRV 250 Libero',
+                category: 'cruiser',
+                price: 73990000,
+                priceFormatted: '73.990.000',
+                engine: '296 cc V-Twin Engine',
+                power: '30.7 HP @ 9,000 RPM',
+                torque: '26 Nm @ 5,000 RPM',
+                typeBadge: 'Cruiser Mewah',
+                image: 'images/srvlibero250.jpg',
+                desc: 'Cruiser mewah serta canggih di lengkapi 2 Transmisi.'
+            },
+            {
+                id: 'viento180abs',
+                name: 'Viento 180 ABS',
+                category: 'scooter',
+                price: 35990000,
+                priceFormatted: '35.990.000',
+                engine: '175 cc',
+                power: '13.5 kW @ 8,500 RPM',
+                torque: '15.0 Nm @ 6,500 RPM',
+                typeBadge: 'Street Scooter',
+                image: 'images/vientoabs.jpg',
+                desc: 'Scooter ciamik siap berkelana di jalan raya.'
+            },
+            {
+                id: 'viento180cbs',
+                name: 'Viento 180 CBS',
+                category: 'scooter',
+                price: 32990000,
+                priceFormatted: '32.990.000',
+                engine: '175 cc',
+                power: '13.5 HP @ 8,500 RPM',
+                torque: '15.0 Nm @ 6,500 RPM',
+                typeBadge: 'Scooter Hybrid',
+                image: 'images/vientocbs.jpg',
+                desc: 'Scooter Hybrid canggih dan elegan'
+            }
+        ];
+
+        const heroSlides = motorcycles.map(m => ({
+            title: `${m.name} <br><span class="text-transparent bg-clip-text bg-gradient-to-r from-brand-red to-red-400">${m.typeBadge.toUpperCase()}</span>`,
+            desc: m.desc,
+            cc: m.engine.split(' ')[0] + ' cc',
+            power: m.power.split(' ')[0] + ' HP',
+            price: m.priceFormatted,
+            image: m.image
+        }));
+
+        let currentHeroSlide = 0;
+        let selectedTenor = 12;
+
+        window.onload = function() {
+            renderProductGrid('all');
+            populateSelectOptions();
+            calculateCredit();
+            startHeroAutoSlide();
+
+            document.getElementById('mobile-menu-btn').addEventListener('click', function() {
+                document.getElementById('mobile-menu').classList.toggle('hidden');
+            });
+        };
+
+        function renderProductGrid(categoryFilter) {
+            const gridContainer = document.getElementById('product-grid');
+            gridContainer.innerHTML = '';
+            const filteredMotors = categoryFilter === 'all' ? motorcycles : motorcycles.filter(m => m.category === categoryFilter);
+
+            filteredMotors.forEach(motor => {
+                const card = document.createElement('div');
+                card.className = 'glass-panel rounded-2xl overflow-hidden border border-white/10 hover:border-brand-red/50 transition-all duration-300 flex flex-col group red-glow-hover';
+                card.innerHTML = `
+                    <div class="relative h-56 overflow-hidden bg-gradient-to-b from-gray-900 to-black">
+                        <span class="absolute top-3 left-3 bg-brand-red text-white text-[10px] uppercase font-bold tracking-wider px-2.5 py-1 rounded">${motor.typeBadge}</span>
+                        <img src="${motor.image}" alt="${motor.name}" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500">
+                    </div>
+                    <div class="p-6 flex-1 flex flex-col justify-between space-y-4">
+                        <div>
+                            <h3 class="font-display font-bold text-xl text-white group-hover:text-brand-red transition-colors">${motor.name}</h3>
+                            <p class="text-xs text-gray-400 mt-1 line-clamp-2">${motor.desc}</p>
+                        </div>
+                        <div>
+                            <div class="mb-4">
+                                <span class="text-[10px] text-gray-400 uppercase font-mono">Harga OTR Mulai</span>
+                                <div class="font-display font-black text-2xl text-white">${motor.priceFormatted}</div>
+                            </div>
+                            <div class="grid grid-cols-2 gap-2">
+                                <button onclick="openSpecModal('${motor.id}')" class="w-full py-2 bg-white/10 hover:bg-white/20 text-white font-semibold text-xs rounded-lg transition-colors">Specs</button>
+                                <button onclick="selectForCredit('${motor.id}')" class="w-full py-2 bg-brand-red hover:bg-brand-darkred text-white font-semibold text-xs rounded-lg transition-colors">Kredit</button>
+                            </div>
+                        </div>
+                    </div>
+                `;
+                gridContainer.appendChild(card);
+            });
+        }
+
+        function filterCategory(category) {
+            document.querySelectorAll('.cat-btn').forEach(btn => {
+                btn.classList.remove('active', 'bg-brand-red', 'border-brand-red', 'text-white');
+                btn.classList.add('bg-brand-card', 'border-white/10', 'text-gray-300');
+            });
+            event.target.classList.add('active', 'bg-brand-red', 'border-brand-red', 'text-white');
+            renderProductGrid(category);
+        }
+
+        function setHeroSlide(index) {
+            currentHeroSlide = index;
+            const data = heroSlides[index];
+            document.getElementById('hero-title').innerHTML = data.title;
+            document.getElementById('hero-desc').textContent = data.desc;
+            document.getElementById('hero-spec-cc').textContent = data.cc;
+            document.getElementById('hero-spec-power').textContent = data.power;
+            document.getElementById('hero-spec-price').textContent = data.price;
+            document.getElementById('hero-image').src = data.image;
+        }
+
+        function startHeroAutoSlide() {
+            setInterval(() => {
+                currentHeroSlide = (currentHeroSlide + 1) % heroSlides.length;
+                setHeroSlide(currentHeroSlide);
+            }, 6000);
+        }
+
+        function populateSelectOptions() {
+            const simSelect = document.getElementById('sim-motor');
+            const testDriveSelect = document.getElementById('modal-motor-select');
+            const contactSelect = document.getElementById('contact-motor-select');
+
+            simSelect.innerHTML = '';
+            testDriveSelect.innerHTML = '';
+            contactSelect.innerHTML = '';
+
+            motorcycles.forEach(motor => {
+                simSelect.add(new Option(`${motor.name} - ${motor.priceFormatted}`, motor.id));
+                testDriveSelect.add(new Option(motor.name, motor.id));
+                contactSelect.add(new Option(motor.name, motor.id));
+            });
+        }
+
+        function setTenor(months) {
+            selectedTenor = months;
+            calculateCredit();
+        }
+
+        function calculateCredit() {
+            const selectedMotorId = document.getElementById('sim-motor').value;
+            const motor = motorcycles.find(m => m.id === selectedMotorId) || motorcycles[0];
+            const dpPercent = parseInt(document.getElementById('sim-dp-range').value);
+
+            const dpAmount = (motor.price * dpPercent) / 100;
+            const loanPrincipal = motor.price - dpAmount;
+            const totalInterest = loanPrincipal * 0.085 * (selectedTenor / 12);
+            const monthlyInstallment = Math.round((loanPrincipal + totalInterest) / selectedTenor);
+
+            document.getElementById('sim-price-display').textContent = motor.priceFormatted;
+            document.getElementById('dp-percent-label').textContent = `${dpPercent}%`;
+            document.getElementById('dp-amount-label').textContent = `Rp ${dpAmount.toLocaleString('id-ID')}`;
+            document.getElementById('sim-monthly-installment').textContent = `Rp ${monthlyInstallment.toLocaleString('id-ID')}/bln`;
+        }
+
+        function selectForCredit(motorId) {
+            document.getElementById('sim-motor').value = motorId;
+            calculateCredit();
+            document.getElementById('credit').scrollIntoView({ behavior: 'smooth' });
+        }
+
+        function applyCreditWithSelectedMotor() {
+            const motor = motorcycles.find(m => m.id === document.getElementById('sim-motor').value);
+            const dpPercent = document.getElementById('sim-dp-range').value;
+            const installmentText = document.getElementById('sim-monthly-installment').textContent;
+
+            const text = `Halo Admin QJMotor, saya ingin mengajukan kredit unit *${motor.name}*:%0A- DP: ${dpPercent}%0A- Tenor: ${selectedTenor} Bulan%0A- Est. Cicilan: ${installmentText}%0AMohon info selanjutnya. Terima kasih!`;
+            window.open(`https://wa.me/6285711238005?text=${text}`, '_blank'); // Nomor WhatsApp Anda[cite: 1]
+        }
+
+        function handleContactSubmit(e) {
+            e.preventDefault();
+            const name = document.getElementById('cust-name').value;
+            const motor = document.getElementById('contact-motor-select').value;
+            const msg = document.getElementById('cust-msg').value;
+
+            const text = `Halo QJMotor, nama saya *${name}*, berminat dengan unit *${motor}*. Pesan: ${msg}`;
+            window.open(`https://wa.me/6285711238005?text=${encodeURIComponent(text)}`, '_blank'); // Nomor WhatsApp Anda[cite: 1]
+        }
+
+        function openTestDriveModal() { document.getElementById('test-drive-modal').classList.remove('hidden'); }
+        function closeTestDriveModal() { document.getElementById('test-drive-modal').classList.add('hidden'); }
+
+        function handleTestDriveSubmit(e) {
+            e.preventDefault();
+            const name = document.getElementById('td-name').value;
+            const motor = document.getElementById('modal-motor-select').value;
+            const date = document.getElementById('td-date').value;
+
+            const text = `Halo QJMotor, saya *${name}* ingin booking Test Drive unit *${motor}* pada tanggal ${date}.`;
+            window.open(`https://wa.me/6285711238005?text=${encodeURIComponent(text)}`, '_blank'); // Nomor WhatsApp Anda
+            closeTestDriveModal();
+        }
+
+        function openSpecModal(motorId) {
+            const motor = motorcycles.find(m => m.id === motorId);
+            if (!motor) return;
+
+            document.getElementById('spec-modal-content').innerHTML = `
+                <div class="grid md:grid-cols-2 gap-6 items-center mb-6">
+                    <img src="${motor.image}" class="rounded-xl w-full h-auto object-cover">
+                    <div>
+                        <h3 class="font-display font-extrabold text-2xl text-white mb-2">${motor.name}</h3>
+                        <div class="font-display text-xl text-brand-red font-bold mb-4">${motor.priceFormatted}</div>
+                        <p class="text-xs text-gray-300 leading-relaxed">${motor.desc}</p>
+                    </div>
+                </div>
+                <div class="flex justify-end gap-3">
+                    <button onclick="closeSpecModal()" class="px-4 py-2 bg-white/10 text-xs font-semibold text-white rounded-lg">Tutup</button>
+                    <button onclick="closeSpecModal(); selectForCredit('${motor.id}')" class="px-5 py-2 bg-brand-red text-xs font-semibold text-white rounded-lg">Hitung Kredit</button>
+                </div>
+            `;
+            document.getElementById('spec-modal').classList.remove('hidden');
+        }
+        function closeSpecModal() { document.getElementById('spec-modal').classList.add('hidden'); }
+    </script>
+</body>
+</html>
